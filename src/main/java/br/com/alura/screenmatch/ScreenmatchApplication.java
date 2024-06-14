@@ -1,9 +1,6 @@
 package br.com.alura.screenmatch;
 
-import br.com.alura.screenmatch.model.DadosEpisodio;
-import br.com.alura.screenmatch.model.DadosSerie;
-import br.com.alura.screenmatch.service.ChamadaAPI;
-import br.com.alura.screenmatch.service.ConverteDados;
+import br.com.alura.screenmatch.principal.Principal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,19 +14,8 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var chamada = new ChamadaAPI();
-		var json = chamada.obterDados("https://www.omdbapi.com/?t=gilmore+girls&apikey=c33b4e73");
-		System.out.println(json);
+		Principal principal = new Principal();
 
-//		json = chamada.obterDados("https://coffee.alexflipnote.dev/random.json");
-//		System.out.println(json);
-
-		ConverteDados conversor = new ConverteDados();
-		DadosSerie dadosSerie = conversor.obterDados(json, DadosSerie.class);
-		System.out.println(dadosSerie);
-
-		json = chamada.obterDados("https://www.omdbapi.com/?t=gilmore+girls&season=1&episode=2&apikey=c33b4e73");
-		DadosEpisodio dadosEpisodio = conversor.obterDados(json, DadosEpisodio.class);
-		System.out.println(dadosEpisodio);
+		principal.exibeMenu();
 	}
 }
