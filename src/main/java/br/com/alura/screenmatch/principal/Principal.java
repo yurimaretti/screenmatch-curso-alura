@@ -1,9 +1,14 @@
 package br.com.alura.screenmatch.principal;
 
+<<<<<<< HEAD
 import br.com.alura.screenmatch.model.DadosEpisodio;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.model.Episodio;
+=======
+import br.com.alura.screenmatch.model.*;
+import br.com.alura.screenmatch.repository.SerieRepository;
+>>>>>>> 9ccbd40 (Criação das classes Serie e SerieRepository, persistência no PostgreSQL e proteção com variáveis de ambiente)
 import br.com.alura.screenmatch.service.ChamadaAPI;
 import br.com.alura.screenmatch.service.ConverteDados;
 
@@ -13,12 +18,24 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Principal {
+
     private Scanner leitura = new Scanner(System.in);
+
     private ChamadaAPI consumo = new ChamadaAPI();
+
     private ConverteDados conversor = new ConverteDados();
+
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
-    private final String API_KEY = "&apikey=c33b4e73";
+
+    private final String API_KEY = System.getenv("IMDB_APIKEY");
+
     private List<DadosSerie> dadosSeries = new ArrayList<>();
+
+    private SerieRepository repositorio;
+
+    public Principal(SerieRepository repositorio) {
+        this.repositorio = repositorio;
+    }
 
     public void exibeMenu() {
         var opcao  = -1;
@@ -57,7 +74,8 @@ public class Principal {
 
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
-        dadosSeries.add(dados);
+        Serie serie = new Serie(dados);
+        repositorio.save(serie);
         System.out.println(dados);
     }
 
@@ -82,6 +100,13 @@ public class Principal {
     }
 
     private void listarSeriesBuscadas() {
+<<<<<<< HEAD
         dadosSeries.forEach(System.out::println);
+=======
+        List<Serie> series = repositorio.findAll();
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
+>>>>>>> 9ccbd40 (Criação das classes Serie e SerieRepository, persistência no PostgreSQL e proteção com variáveis de ambiente)
     }
 }
