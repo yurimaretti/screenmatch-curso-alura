@@ -1,21 +1,15 @@
 package br.com.alura.screenmatch.principal;
 
-<<<<<<< HEAD
-import br.com.alura.screenmatch.model.DadosEpisodio;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
-import br.com.alura.screenmatch.model.Episodio;
-=======
-import br.com.alura.screenmatch.model.*;
+import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
->>>>>>> 9ccbd40 (Criação das classes Serie e SerieRepository, persistência no PostgreSQL e proteção com variáveis de ambiente)
 import br.com.alura.screenmatch.service.ChamadaAPI;
 import br.com.alura.screenmatch.service.ConverteDados;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
 public class Principal {
 
@@ -100,13 +94,11 @@ public class Principal {
     }
 
     private void listarSeriesBuscadas() {
-<<<<<<< HEAD
         dadosSeries.forEach(System.out::println);
-=======
+
         List<Serie> series = repositorio.findAll();
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
->>>>>>> 9ccbd40 (Criação das classes Serie e SerieRepository, persistência no PostgreSQL e proteção com variáveis de ambiente)
     }
 }

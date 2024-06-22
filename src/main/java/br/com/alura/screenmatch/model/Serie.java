@@ -46,8 +46,6 @@ public class Serie {
         this.sinopse = dadosSerie.sinopse();
         this.poster = dadosSerie.poster();
     }
-<<<<<<< HEAD
-=======
 
     public Long getId() {
         return id;
@@ -131,5 +129,4 @@ public class Serie {
                 ", sinopse = '" + sinopse + '\'' +
                 ", poster = '" + poster + '\'';
     }
->>>>>>> 9ccbd40 (Criação das classes Serie e SerieRepository, persistência no PostgreSQL e proteção com variáveis de ambiente)
 }
